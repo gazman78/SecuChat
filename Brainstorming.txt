@@ -1,0 +1,42 @@
+Date de rendu : 
+26 - 27 mars
+
+
+> sécurisé ?
+Le serveur est l'ennemi : il ne doit rien savoir
+Il doit gérer seulement l'authentification.
+Il ne doit pas garder de logs.
+
+> Bonus
+Chat vidéo
+
+> Architecture
+Client-Serveur
+
+> Interface web
+JS/CSS
+
+> Sécurité côté client
+Secure webSocket ?
+
+> Sécurité côté serveur
+Glassfish
+
+
+TODO :
+0°) Définir planning
+1°) Configurer le serveur Glassfish
+2°) Envoyer quelques messages au serveur, tester s'il les reçoit bien
+3°) Réfléchir comment faire pour que le serveur ne "doive rien savoir"
+
+Liens :
+ Chat Sever using WebSocket in GlassFish 4 (TOTD #207)  : 
+ https://blogs.oracle.com/arungupta/entry/chat_sever_using_websocket_totd
+ 
+ Creating a WebSocket-Chat-Application with Jetty and Glassfish :
+ http://java.dzone.com/articles/creating-websocket-chat
+ 
+ 
+ 1) Chiffrement -> RSA sans que le serveur ne puisse déchiffrer le contenu des messages
+ 2) (serveur) Ecouter sur un port 8080
+ 3) Envoyer sur la websocket on peut recevoir/envoyer sur le port 8080 des données
