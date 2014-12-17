@@ -1,0 +1,36 @@
+Client web
+Javascript, compatible téléphone
+chiffrement javascript crypto.js
+
+Serveur
+Authentification: est-ce que le serveur décide tout seul (crypto symétrique) ou est-ce qu'il délègue à une autorité (utilisation clé publique)
+
+Déduire la clé publique à partir de l'identité (nom prénom) IDBaseEncryption (utilisation d'une autorité)
+
+groupes de discussions
+plusieurs salons
+
+Un utilisateur peut crér un salon à la volée. Mot de passe pour rentrer sur le salon
+
+Cookies forgeables, 
+
+Si logout, être sûr que la session est invalidé
+Si il quitte juste, il doit resté connecté
+
+HTTPS protège man in the middle ou serveur légitime, utilisateur légitime
+
+Prendre en compte ce qui passe sur le réseau
+
+Pas d'utilisateurs anonymes
+
+Ajax (initié par le client), SSE, WenSockets (initié par le serveur)
+
+Stockage de données: localstorage, sessionstorage
+stocké la clé de session
+
+Livrables:
+- Code
+- Rapport d'une trentaine de pages
+- 1H présentation + démo
+
+Date: 26-27 mars
