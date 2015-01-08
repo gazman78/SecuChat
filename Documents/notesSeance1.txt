@@ -1,6 +1,6 @@
 Client web
 Javascript, compatible téléphone
-chiffrement javascript crypto.js
+chiffrement javascript crypto.js, sjcl 
 
 Serveur
 Authentification: est-ce que le serveur décide tout seul (crypto symétrique) ou est-ce qu'il délègue à une autorité (utilisation clé publique)
@@ -10,7 +10,7 @@ Déduire la clé publique à partir de l'identité (nom prénom) IDBaseEncryptio
 groupes de discussions
 plusieurs salons
 
-Un utilisateur peut crér un salon à la volée. Mot de passe pour rentrer sur le salon
+Un utilisateur peut crér un salon à la volée.
 
 Cookies forgeables, 
 
