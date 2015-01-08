@@ -34,3 +34,10 @@ Livrables:
 - 1H présentation + démo
 
 Date: 26-27 mars
+
+
+Est-ce que le modèle fonctionne?
+
+N'importe qui dans la room peut inviter quelqu'un
+Toutes privées
+Une fois qu'une personne est dans la room, elle a autant de pouvoir que le créateur. Propiétaire de la room se déconnecte, pas de destruction de la room.
