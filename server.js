@@ -13,10 +13,17 @@ var server = net.createServer(function(c) {
 			console.log('client already defined');
 		}
 		else {
-			var sercret_key=ibe.extract_secret_key(data);
-			fs.appendFile("clients_already_exist", data, "UTF-8");
-			console.log(sercret_key);
-			c.write(sercret_key);
+			// Check email format 
+			var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i');
+			if (!regEmail.test(myVar)) {
+				console.log ("Wrong email address");
+			}
+			else {
+				var sercret_key=ibe.extract_secret_key(data);
+				fs.appendFile("clients_already_exist", data, "UTF-8");
+				console.log(sercret_key);
+				c.write(sercret_key);
+			]
 		}
 	});	
 	c.pipe(c);
