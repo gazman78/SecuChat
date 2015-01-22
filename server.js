@@ -1,5 +1,6 @@
 var net = require('net');
 var fs = require("fs");
+var readline = require('readline');
 var ibe = require('./ibe/ibe_extract.js');
 var server = net.createServer(function(c) {
 	console.log('client connected');
@@ -7,10 +8,16 @@ var server = net.createServer(function(c) {
 		console.log('client disconnected');
 	});
 	c.on('data', function(data){
-		var sercret_key=ibe.extract_secret_key(data);
-		fs.appendFile("clients_already_exist", data, "UTF-8");
-		console.log(sercret_key);
-		c.write(sercret_key);
+		var contenu = fs.readFileSync("clients_already_exist", "UTF-8");
+		if(contenu.indexOf(data) > -1) {
+			console.log('client already defined');
+		}
+		else {
+			var sercret_key=ibe.extract_secret_key(data);
+			fs.appendFile("clients_already_exist", data, "UTF-8");
+			console.log(sercret_key);
+			c.write(sercret_key);
+		}
 	});	
 	c.pipe(c);
 });
