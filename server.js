@@ -44,7 +44,7 @@ var server = net.createServer (function (client) {
 			else {
 				// Generate a secret_key
 				var secret_key = ibe.extract_secret_key (data);
-				fs.appendFile ("clients_already_exist", data, "UTF-8");
+				fs.appendFile ("clients_already_exist", data + "\n", "UTF-8");
 				// Send the secret_key to the client
 				client.write (secret_key);
 			}
@@ -53,6 +53,6 @@ var server = net.createServer (function (client) {
 });
 
 // Bind port 8124 and listen for connections
-server.listen (8124, function () {
-	console.log ('server listening on port 8124');
+server.listen (8125, function () {
+	console.log ('server listening on port 8125');
 });

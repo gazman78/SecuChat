@@ -1,0 +1,10 @@
+<html> 
+<head> 
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha512.js"></script>
+<script src="ibe.js"></script>
+
+<script>
+var passwordRoom = "password";
+var encMsg = ibe_encrypt(passwordRoom, "bob@domain.com");
+console.log(createHexString(encMsg));
+</script>
