@@ -3423,24 +3423,23 @@ function ibe_encrypt(id,msg)
     // if the input id is '', it's not possible to do encryption. just return
     if( id == '')
         return ''
-    
+
     var Q_id = G1_from_hash(id)
 
     var gt = pairing(Q_id[0],Q_id[1],p2x,p2y) 
-    //var r = str2bigInt("2843629013705221760874038394476758957859008618996765624028037636473",10,0)
 	var r = randBigInt(223,0)
 	var U = gen_U(r)
 
-        var enc=GT_pow(gt,r)
+    var enc=GT_pow(gt,r)
 	encKey = ibe_hash(gt2str(enc))
 	//var encMsg = Base64.encode(xor(msg, encKey))
-        var encMsg = aes_encode(msg,encKey)
+    var encMsg = aes_encode(msg,encKey)
 
 	//var ret = "var encMsg = Base64.decode('" + encMsg +"');"
 	var ret = "var encMsg = ('" + encMsg +"');"
 	ret += "var U = array_to_G2("+gt2str(U)+")"
 
-        //hide the details using base64
+    //hide the details using base64
 	return Base64.encode( ret )
 
 }
@@ -3448,6 +3447,7 @@ function ibe_encrypt(id,msg)
 //decryption interface
 function ibe_decrypt(secretKeyJson,msgJson)
 {
+	console.log(secretKeyJson);
 	//eval the json text
 	//here will get:
 	//encMsg
@@ -3455,6 +3455,7 @@ function ibe_decrypt(secretKeyJson,msgJson)
         //we have to do replacing. Base64.decoding including '\n'.
         msgJson = Base64.decode(msgJson).replace(/\n/g,"")
 	eval(msgJson)
+	
 
 	//here will get:
 	//d_id

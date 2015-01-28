@@ -1,0 +1,29 @@
+<html> 
+<head> 
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/aes.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/mode-ctr.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha512.js"></script>
+<script src="ibe.js"></script>
+
+<script>
+function createHexString(arr) {
+    var result = "";
+    for (i in arr) {
+        var str = arr[i].toString(16);
+        str = str.length == 0 ? "00" :
+              str.length == 1 ? "0" + str : 
+              str.length == 2 ? str :
+              str.substring(str.length-2, str.length);
+        result += str;
+    }
+    return result;
+}
+
+var bobKey = "dmFyIGRfaWQgPSBhcnJheV90b19HMShbJzY2NzA5MzE0MTUwOTUxNzM1NjM0OTc4ODQwMDAwMDk5NzEzNDc3NzcwMTkwNTkyNjAxOTg2MzE0NTYzMTg1MDAwNTcnLCcxMTU3NjE3MTE1MTQxODI4NDM5MDc5OTQ0MTAwMjI5OTk1NDA1NzU5Mjc4MTc5MzczMzI0MTkyODU4Mjg1MzMyNjIxMycsXSk7"
+var encMsg = "dmFyIGVuY01zZyA9ICgnVTJGc2RHVmtYMThESHlRL0VPT2hDaTNRZDhZNWdVMHkzY0Vad256Vjdlaz0nKTt2YXIgVSA9IGFycmF5X3RvX0cyKFtbJzIxNzI4NzEyMzQyNDIxODEyOTQ1NjI4NTgzNTQ4MjEyMDU1ODYzMjczODM1OTgxMDk3NTgwNjMxNzM2MzQ0OTMzMzEnLCcxMDg2MjM4NDA2NzAxMTQ3NDI3MDMxMTk1OTczODIwMTI3MDQxMzA0Mjk4Mzk3OTUyOTg0NTAzNzY4MDE1ODc5MzAxNicsJzI1ODc4NzQ0OTEyNjI4NjcxNzM4MzczOTk0NDY3MjU2OTg5NzQyMDYzMDkzODcyNTM5OTM3ODY1ODMzMzUxMzYzODUnLF0sWyc3MjI4NjE0NzY5OTU0MDI4MTMwODEzOTU3ODU3NjI4NTcyMTk5NzgwNDgxNjQxNjM2MDg2NDc3NjcyMjU1NjM2NzEwJywnODA5OTY2MjM3NTg4NzcxNDU3OTkzMzgzNDYxMDkyMDkzMzg5NjgwNjg5MjQyODI0Njc4MzcxNTQzMzE2MDg4Mzg0MicsJzQ3OTI5OTc4ODIxNzMwMzkzMDMxNDAwNDg4NzAwNDgzMDc0OTY0ODUyNDQxOTY5NDkwNzA5ODY3MTk5MzYwNzUxNjgnLF0sXSk=";
+var plainMsg = ibe_decrypt(bobKey, encMsg);
+console.log(plainMsg);
+</script>
+
