@@ -5,7 +5,7 @@ var readline = require ('readline');
 var ibe = require ('./ibe/ibe_extract.js');
 
 // Global array of clients
-var clients = {};
+var clients = [];
 
 var server = net.createServer (function (client) {
 	
@@ -33,8 +33,11 @@ var server = net.createServer (function (client) {
 			console.log ('client already defined');
 		}
 		else {
-			// Check email format 
-			if (!(new RegExp ('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i').test (data))) {
+			// Check email format
+			var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			console.log("data = <" + data + ">");
+ 
+			if (!filter.test(data)) {
 				// Error : mail not correctly formated
 				console.log ("Wrong email address");
 			}
