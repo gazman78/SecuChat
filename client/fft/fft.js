@@ -1,6 +1,6 @@
 // Defines
 var ii = new Math.Complex (1, 1);
-var Pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081L;
+var Pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081;
 var Nmax = 4096;
 
 
@@ -78,15 +78,16 @@ void MyComplexFFT(complex<long_double_t> * const f_fft, long_double_t const * co
 function MyComplexFFT (f_fft, f, N, w0)
 {
 	if (N == 1) {
-        f_fft[0] = f[0];
+        f_fft[0] = new Math.Complex(f[0], 0);
 	}
 	
     else 
 	{
         if (N == 2) {
 			iif1 = ii.mul (f[1]);
-            f_fft [0] = f[0].add (iif1);
-            f_fft [1] = f[0].sub (iif1);
+			var f0c = new Math.Complex(f[0], 0);
+            f_fft [0] = f0c.add(iif1);
+            f_fft [1] = f0c.sub(iif1);
 		}
 		
 		else 
@@ -128,6 +129,78 @@ function MyComplexFFT (f_fft, f, N, w0)
 }
 
 
+/*
+void MyReverseFFT(complex<long_double_t> * const f, complex<long_double_t> const * const f_fft, const unsigned long N, const complex<long_double_t> w0)
+{
+    if(N!=2)
+    {
+        assert(N%2==0);
+        complex<long_double_t> f0[N/2], f1[N/2];
+        complex<long_double_t> f0_fft[N/2], f1_fft[N/2], w02, wk;
+        unsigned int k;
+
+        w02 = w0*w0;
+        wk = w0;
+
+        for(k=0; k<N/2; k++)
+        {
+            f0_fft[k] = (f_fft[k] + f_fft[k+(N/2)])*0.5l;
+            f1_fft[k] = wk*(f_fft[k] - f_fft[k+(N/2)])*0.5l;
+            wk *= w02;
+        }
+        MyReverseFFT(f0, f0_fft, (N/2), w02);
+        MyReverseFFT(f1, f1_fft, (N/2), w02);
+
+        for(k=0; k<N/2; k++)
+        {
+            f[2*k] = f0[k];
+            f[2*k+1] = f1[k];
+        }
+    }
+    else
+    {
+        f[0] = (f_fft[0] + f_fft[1])*0.5l;
+        f[1] = (f_fft[0] - f_fft[1])*(-0.5l*ii);
+    }
+}
+*/
+function MyReverseFFT (f, f_fft, N, w0)
+{
+    if(N!=2)
+    {
+        //complex<long_double_t> f0[N/2], f1[N/2];
+		var f0 = new Array(N/2);
+		var f1 = new Array(N/2);
+		
+        //complex<long_double_t> f0_fft[N/2], f1_fft[N/2], w02, wk;
+        var f0_fft = new Array(N/2);
+        var f1_fft = new Array(N/2);
+		
+        var w02 = w0.mul(w0);
+        var wk = w0;
+
+        for(k=0; k<N/2; k++)
+        {
+            f0_fft[k] = (f_fft[k].add(f_fft[k+(N/2)])).mul(0.5);
+            f1_fft[k] = wk.mul(f_fft[k].sub(f_fft[k+(N/2)])).mul(0.5);
+			
+            wk = wk.mul(w02);
+        }
+        MyReverseFFT(f0, f0_fft, (N/2), w02);
+        MyReverseFFT(f1, f1_fft, (N/2), w02);
+
+        for(k=0; k<N/2; k++)
+        {
+            f[2*k] = f0[k];
+            f[2*k+1] = f1[k];
+        }
+    }
+    else
+    {
+        f[0] = (f_fft[0].add(f_fft[1])).mul(0.5);
+        f[1] = (f_fft[0].sub(f_fft[1])).mul(ii.mul(-0.5));
+    }
+}
 
 // Reverse FFT
 /*
@@ -151,10 +224,10 @@ function MyIntReverseFFT (f, f_FFT, N) {
 	var w0 = negii.mul(Pi / N).exp();
 	var fprime = new Array (Nmax);
 	
-	MyReverseFFT(fprime, f_fft, N, w0);
+	MyReverseFFT(fprime, f_FFT, N, w0);
 	
     for (i = 0; i < N; i++) {
-		f[i] = Math.round(fprime[i].re());
+		f[i] = Math.round(fprime[i].re);
 	}
 	
 	MyComplexFFT(f_FFT, f_double, N, w0);
