@@ -25,7 +25,7 @@
     var j = new CPLX(0, 1),
     slice = Array.prototype.slice;
     CPLX.prototype.toString = function() {
-        var s = '' + this.re;
+        var s = '' + this.re + ' / ';
         if (this.im) {
             if (this.im > 0) s += '+';
             s += this.im;

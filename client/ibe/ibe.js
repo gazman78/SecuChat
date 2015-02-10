@@ -21,9 +21,9 @@ function IBE_Encrypt(C, m, id0, MPKD, RD)
 		
 		for(i=0; i<N; i++)
 		{
-			e1[i] = (Math.random()%3) - 1;
-			e2[i] = (Math.random()%3) - 1;
-			r[i] = (Math.random()%3) - 1;
+			e1[i] = (i%3) - 1; // Math.round(((Math.random()*2147483647) %3) - 1);
+			e2[i] = (i%3) - 1; // Math.round(((Math.random()*2147483647) %3) - 1);
+			r[i]  = (i%3) - 1; // Math.round(((Math.random()*2147483647) %3) - 1);
 		}
 		
 		MyIntFFT(r_FFT, r, N);
@@ -148,16 +148,13 @@ void Encrypt_Test(const unsigned int nb_cryp, MPK_Data * MPKD, MSK_Data * MSKD, 
 function Encrypt_Test ()
 {
 	var message = new Array (RD["N"]);
-	for(j=0; j < RD["N"]; j++)
-	{
+	for(j=0; j < RD["N"]; j++) {
 		message[j] = j % 2;
 	}
 
 	var CiphertextArray = new Array(2);
-	for (i = 0; i < Nmax; i++) {
-		CiphertextArray[0] = new Array(Nmax);
-		CiphertextArray[1] = new Array(Nmax);
-	}
+	CiphertextArray[0] = new Array(Nmax);
+	CiphertextArray[1] = new Array(Nmax);
 
 
 	var h_FFT = new Array(Nmax);
@@ -165,7 +162,8 @@ function Encrypt_Test ()
 	for (i = 0; i < Nmax; i++) {
 		h_FFT[i] = new Math.Complex(0, 0);
 	}
-
+	
+	
 	h_FFT[0] = new Math.Complex(38951006.926141, 335875557.451766); 
 	h_FFT[1] = new Math.Complex(-711138995.907352, 925229962.204486); 
 	h_FFT[2] = new Math.Complex(11220752188.474829, 31031404742.734712); 
@@ -4534,6 +4532,9 @@ function Encrypt_Test ()
 		console.log("[0]["+ i + "] = " + CiphertextArray[0][i]);
 		console.log("[1]["+ i + "] = " + CiphertextArray[1][i]);
 	}
+
+    // IBE_Decrypt(decrypted, Ciphertext, SKid_FFT, RD);
+	// IBE_Decrypt(message, CiphertextArray, 
 }
 
 
