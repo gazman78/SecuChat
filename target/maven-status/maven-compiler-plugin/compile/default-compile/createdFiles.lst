@@ -1,0 +1,4 @@
+com/hascode/tutorial/ChatMessage.class
+com/hascode/tutorial/ChatMessageEncoder.class
+com/hascode/tutorial/ChatMessageDecoder.class
+com/hascode/tutorial/ChatEndpoint.class
